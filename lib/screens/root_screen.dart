@@ -22,8 +22,20 @@ class RootScreen extends StatelessWidget {
           );
         }).toList();
 
-        // TODO: implement
-        return WillPopScope();
+        return WillPopScope(
+          onWillPop: () => provider.onWillPop(context),
+          child: Scaffold(
+            body: IndexedStack(
+              index: provider.currentScreenIndex,
+              children: screens,
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+              items: bottomNavigationBarItens,
+              currentIndex: provider.currentScreenIndex,
+              onTap: provider.setTab,
+            ),
+          ),
+        );
       },
     );
   }

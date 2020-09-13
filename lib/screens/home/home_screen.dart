@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String route = '/home';
@@ -14,11 +15,21 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             RaisedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: false,
+                ).pushNamed(ProfileScreen.route);
+              },
               child: Text('Go to profile with bottomNavigation'),
             ),
             RaisedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pushNamed(ProfileScreen.route);
+              },
               child: Text('Go to profile without bottomNavigation'),
             ),
           ],

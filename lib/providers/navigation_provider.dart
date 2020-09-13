@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navigation/screens/root_screen.dart';
 import 'package:navigation/widgets/exit_dialog.dart';
 import 'package:provider/provider.dart';
 
@@ -7,6 +8,8 @@ import 'package:navigation/screens/home/home_screen.dart';
 import 'package:navigation/screens/home/profile_screen.dart';
 import 'package:navigation/screens/library/library_screen.dart';
 import 'package:navigation/screens/search/search_screen.dart';
+
+import '../screens/home/profile_screen.dart';
 
 class ScreenIndex {
   static const int HOME_SCREEN = 0;
@@ -56,7 +59,7 @@ class NavigationProvider extends ChangeNotifier {
     ),
     ScreenIndex.LIBRARY_SCREEN: Screen(
       title: 'My Library',
-      iconData: Icons.search,
+      iconData: Icons.library_music,
       child: LibraryScreen(),
       initialRoute: LibraryScreen.route,
       navigatorState: GlobalKey<NavigatorState>(),
@@ -111,6 +114,15 @@ class NavigationProvider extends ChangeNotifier {
           builder: (context) => ExitAlertDialog(),
         );
       }
+    }
+  }
+
+  Route<dynamic> onGenerateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case ProfileScreen.route:
+        return MaterialPageRoute(builder: (_) => ProfileScreen());
+      default:
+        return MaterialPageRoute(builder: (_) => RootScreen());
     }
   }
 }
